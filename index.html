@@ -96,7 +96,8 @@
         margin: 40px 0;
         padding: 0 20px;
       }
-      .cat-box {
+      /* .cat-box styles are applied to 'a' tags now, ensuring link appearance */
+      .cat-box { 
         background: #00bfa5;
         color: white;
         padding: 35px 50px;
@@ -106,6 +107,9 @@
         cursor: pointer;
         box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         transition: transform .25s ease, background .25s ease;
+        text-decoration: none; /* Important for 'a' tags */
+        display: block; /* Important for 'a' tags to take full padding */
+        text-align: center;
       }
       .cat-box:hover {
         transform: scale(1.07);
@@ -237,7 +241,6 @@
       <div class="nav-links">
         <a href="#">Home</a>
         <a href="aboutus.html">About Us</a>
-        <a href="#">Courses</a>
         <a href="#" id="contactBtn">Contact</a>
       </div>
     </div>
@@ -247,12 +250,12 @@
       <p>Study Smart — Learn Better</p>
     </div>
 
-    <div class="notice"><b>Welcome</b> <br> <small>important notice will appear here</samll></div>
+    <div class="notice"><b>Welcome</b> <br> <small>important notice will appear here</small></div>
 
     <div class="categories">
-      <div class="cat-box">HSC</div>
-      <div class="cat-box">SSC</div>
-      <div class="cat-box">Admission</div>
+      <a href="hsc.html" class="cat-box">HSC</a>
+      <a href="ssc.html" class="cat-box">SSC</a>
+      <a href="admission.html" class="cat-box">Admission</a>
     </div>
 
     <div class="posts-area">
@@ -300,10 +303,6 @@
     </div>
 
     <script>
-      // --- ABOUT US LOGIC REMOVED/CLEANUP ---
-      // Removed: aboutBtn, aboutModal, closeAbout variable declarations
-      // Removed: aboutBtn.addEventListener and closeAbout.addEventListener
-
       // --- CONTACT LOGIC ---
       const contactBtn = document.getElementById('contactBtn');
       const contactModal = document.getElementById('contactModal');
