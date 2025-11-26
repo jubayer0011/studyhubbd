@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="About StudyHub BD - Our Mission and Vision" />
+    <title>About Us | StudyHub BD</title>
+    <style>
+      /* Base Styles & Consistency with Index */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f4f7f9;
+        color: #1a1a1a;
+        line-height: 1.6;
+      }
+
+      /* NAVBAR (Modified: Only Home link remains) */
+      .navbar {
+        width: 100%;
+        padding: 15px 30px;
+        background: #0aaf8f;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.18);
+      }
+      .nav-logo {
+        font-size: 28px;
+        color: white;
+        font-weight: bold;
+        letter-spacing: 1px;
+      }
+      .nav-links a {
+        margin-left: 20px;
+        font-size: 16px;
+        text-decoration: none;
+        color: white;
+        font-weight: 600;
+        transition: 0.3s;
+        cursor: pointer;
+      }
+      .nav-links a:hover {
+        color: #d8fff6;
+      }
+
+      /* HERO/TITLE SECTION */
+      .about-hero {
+        text-align: center;
+        padding: 60px 20px;
+        background: linear-gradient(135deg, #00e6a4, #0ac0ff); /* Same as index.html */
+        color: white;
+        border-radius: 0 0 30px 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+      .about-hero h1 {
+        font-size: 38px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      .about-hero p {
+        font-size: 18px;
+        max-width: 700px;
+        margin: 0 auto;
+        opacity: 0; /* Hidden initially */
+        animation: fadeInUp 1s ease-out forwards 0.5s;
+      }
+
+      /* MAIN CONTENT AREA */
+      .about-content {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 30px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      }
+      .content-block {
+        margin-bottom: 30px;
+        padding: 15px;
+        border-left: 5px solid #0aaf8f;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        opacity: 0; /* Hidden initially */
+        transform: translateY(20px);
+        background: #f0fdf9;
+      }
+      .content-block:hover {
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        border-left-color: #009e86;
+      }
+      .content-block h2 {
+        color: #0aaf8f;
+        font-size: 24px;
+        margin-bottom: 15px;
+        font-weight: 700;
+      }
+      .content-block p {
+        font-size: 17px;
+        color: #333;
+        text-align: justify;
+        line-height: 1.8;
+      }
+
+      /* FOOTER (Copied from index.html for consistency) */
+      footer {
+        margin-top: 60px;
+        background: #0aaf8f;
+        text-align: center;
+        padding: 25px;
+        color: white;
+        font-size: 16px;
+        border-radius: 30px 30px 0 0;
+      }
+
+      /* ANIMATIONS */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      /* Staggered Animation Classes (Used in JS) */
+      .animated {
+          animation: fadeInUp 0.8s ease-out forwards;
+      }
+
+      /* MOBILE RESPONSIVE */
+      @media (max-width: 768px) {
+        .navbar {padding: 15px 15px; }
+        .nav-links a {margin-left: 10px; font-size: 14px;}
+        .about-hero h1 {font-size: 30px;}
+        .about-content {margin: 20px 10px; padding: 20px;}
+        .content-block {padding: 12px;}
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="nav-logo">StudyHub</div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+      </div>
+    </div>
+
+    <div class="about-hero">
+      <h1 class="animated-heading">Our Story, Our Mission</h1>
+      <p>
+        The core philosophy guiding StudyHub BD is simple: **Education should be universally accessible, clear, and focused on real-world academic success.**
+      </p>
+    </div>
+
+    <div class="about-content">
+      <div class="content-block" id="block1">
+        <h2>Welcome to our learning space.</h2>
+        <p>
+          This platform has been created with one goal: to make high-quality study materials accessible to every student, regardless of background, location, or financial limitation. Education should not feel complicated, overwhelming, or out of reach. Here, students will find organized, exam-oriented, and easy-to-understand resources designed to support real academic progress.
+        </p>
+      </div>
+
+      <div class="content-block" id="block2">
+        <h2>Our Core Beliefs & Content Quality</h2>
+        <p>
+          We believe that every student deserves clear guidance, reliable content, and a place where studying feels structured and meaningful. All materials found on this site—notes, problem solutions, explanations, formula sheets, practice sets, and reference guides—are prepared with careful attention to accuracy and simplicity. The intention is not just to provide information, but to help students truly understand the concepts they study.
+        </p>
+      </div>
+
+      <div class="content-block" id="block3">
+        <h2>Our Mission & Future Commitment</h2>
+        <p>
+          Our mission is to build a resource hub that students can depend on throughout the year. Whether someone is preparing for school exams, board exams, university admission tests, or simply trying to strengthen foundational knowledge, this platform aims to serve as a trusted companion in that journey.
+        </p>
+        <p style="margin-top: 10px;">
+          We continuously work to expand and update our content so that students always have the most relevant and high-quality materials at their fingertips. Feedback from learners is taken seriously, and improvements are made regularly to ensure clarity, usefulness, and long-term value.
+        </p>
+      </div>
+
+      <div class="content-block" id="block4" style="text-align: center; border: none; background: #e0fff3;">
+        <h2 style="color: #00796b;">Thank You</h2>
+        <p>
+            Thank you for choosing this platform as part of your academic journey. We hope it becomes a place where learning feels easier, clearer, and more rewarding.
+        </p>
+      </div>
+    </div>
+
+    <footer>
+      © 2025 StudyHub BD — All Rights Reserved
+    </footer>
+
+    <script>
+        // Smooth Staggered Animation for content blocks
+        const blocks = [
+            document.getElementById('block1'),
+            document.getElementById('block2'),
+            document.getElementById('block3'),
+            document.getElementById('block4'),
+            document.querySelector('.animated-heading')
+        ];
+        
+        // Loop through all blocks and apply the animation with a delay
+        blocks.forEach((block, index) => {
+            block.style.animationDelay = `${0.3 + index * 0.2}s`; // Stagger delay
+            block.classList.add('animated');
+        });
+    </script>
+  </body>
+</html>
