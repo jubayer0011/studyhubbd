@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Construction | StudyHub BD</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: #1a1a1a;
+            /* Full screen beautiful gradient background */
+            background: linear-gradient(135deg, #e0f2f1 0%, #00bfa5 100%); 
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden; /* Hide potential scrollbar from animation */
+        }
+
+        /* Animated Greeting Container */
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            position: relative;
+            z-index: 10;
+            /* Animation: Gentle 'breathing' pulse effect */
+            animation: pulse 4s infinite ease-in-out; 
+        }
+
+        .container h1 {
+            font-size: 40px;
+            color: #0aaf8f; 
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1s ease-out;
+        }
+
+        .container p {
+            font-size: 20px;
+            color: #555;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        /* The main construction message */
+        .construction-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: #00796b; /* Darker teal for emphasis */
+            margin-top: 10px;
+            animation: flicker 1.5s infinite alternate; /* Subtle flicker effect */
+        }
+
+        /* Home Button Style */
+        .home-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #0aaf8f;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: 0.3s;
+            margin-top: 30px;
+        }
+        .home-btn:hover {
+            background: #009e86;
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 175, 143, 0.4);
+        }
+
+        /* Floating Decoration/Particles (For extra visual appeal) */
+        .decoration {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: #00e6a4;
+            opacity: 0.2;
+            border-radius: 50%;
+            z-index: 5;
+            filter: blur(80px); /* Soft glow */
+            animation: float 10s infinite alternate ease-in-out;
+        }
+        .dec-top {
+            top: 5%;
+            left: 10%;
+            animation-delay: 1s;
+        }
+        .dec-bottom {
+            bottom: 5%;
+            right: 15%;
+            width: 120px;
+            height: 120px;
+            background: #0ac0ff;
+            animation-delay: 3s;
+        }
+
+        /* --- ANIMATION KEYFRAMES --- */
+
+        /* 1. Subtle Pulse/Breathing for the main container */
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); }
+            50% { transform: scale(1.01); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25); }
+            100% { transform: scale(1); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); }
+        }
+
+        /* 2. Flicker for the main text */
+        @keyframes flicker {
+            from { opacity: 1; }
+            to { opacity: 0.8; }
+        }
+
+        /* 3. Floating decoration */
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(20px, 30px) rotate(10deg); }
+        }
+        
+        /* 4. Text appearance */
+        @keyframes slideIn {
+             from { opacity: 0; transform: translateY(-10px);} 
+             to { opacity: 1; transform: translateY(0);} 
+        }
+        @keyframes fadeIn {
+             from { opacity: 0;} 
+             to { opacity: 1;} 
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .container {
+                padding: 40px 30px;
+            }
+            .container h1 {
+                font-size: 30px;
+            }
+            .construction-text {
+                font-size: 24px;
+            }
+            .decoration {
+                display: none; /* Hide complex animation on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="decoration dec-top"></div>
+    <div class="decoration dec-bottom"></div>
+    
+    <div class="container">
+        <h1>আপনাকে স্বাগত! ✨</h1>
+        <p>আমরা দুঃখিত, কিন্তু এই পেজটির কাজ এখনো চলছে। আমরা এটিকে আরও সুন্দর ও তথ্যবহুল করার জন্য দ্রুত কাজ করছি।</p>
+        
+        <div class="construction-text">
+            "This page is under construction"
+        </div>
+        
+        <p style="font-size: 16px; margin-top: 25px;">খুব শীঘ্রই ফিরে আসছি নতুন কনটেন্ট নিয়ে। আমাদের সাথে থাকার জন্য ধন্যবাদ!</p>
+
+        <a href="index.html" class="home-btn">হোম পেজে ফিরে যান</a>
+    </div>
+
+</body>
+</html>

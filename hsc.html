@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSC Corner | StudyHub BD</title>
+    <style>
+        /* Base Styles (Consistent with index.html) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f7f9;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR (Consistent with index.html) */
+        .navbar {
+            width: 100%;
+            padding: 15px 30px;
+            background: #0aaf8f;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.18);
+        }
+        .nav-logo {
+            font-size: 28px;
+            color: white;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .nav-links a {
+            margin-left: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .nav-links a:hover {
+            color: #d8fff6;
+        }
+
+        /* HERO SECTION */
+        .hsc-hero {
+            padding: 60px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #00e6a4, #0ac0ff);
+            color: white;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.2s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px);} 
+            to { opacity: 1; transform: translateY(0);} 
+        }
+        .hsc-hero h1 {
+            font-size: 38px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .hsc-hero p {
+            font-size: 18px;
+        }
+
+        /* SUBJECT FILTER BUTTONS */
+        .filter-section {
+            text-align: center;
+            padding: 30px 20px 10px;
+            max-width: 1100px;
+            margin: auto;
+        }
+        .filter-section h2 {
+            color: #0aaf8f;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        .subject-button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: 2px solid #0aaf8f;
+            background: white;
+            color: #0aaf8f;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .subject-button:hover, .subject-button.active {
+            background: #0aaf8f;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 175, 143, 0.3);
+        }
+
+        /* POSTS GRID */
+        .posts-grid {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* POST CARD */
+        .hsc-post-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            opacity: 0; /* Hidden for JS animation */
+            transform: translateY(20px);
+        }
+        .hsc-post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .post-tag {
+            background: #0aaf8f;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: 600;
+            align-self: flex-start;
+            margin-bottom: 10px;
+        }
+        .post-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #1b1b1b;
+        }
+        .post-meta {
+            font-size: 14px;
+            color: #777;
+            margin-top: auto;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+
+        /* FOOTER (Consistent with index.html) */
+        footer {
+            margin-top: 60px;
+            background: #0aaf8f;
+            text-align: center;
+            padding: 25px;
+            color: white;
+            font-size: 16px;
+            border-radius: 30px 30px 0 0;
+        }
+
+        /* ANIMATION */
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* MEDIA QUERIES for responsiveness */
+        @media (max-width: 600px) {
+            .navbar {padding: 15px 15px;}
+            .nav-logo {font-size: 24px;}
+            .nav-links a {margin-left: 10px;}
+            .hsc-hero h1 {font-size: 30px;}
+            .posts-grid {padding: 10px; gap: 15px; grid-template-columns: 1fr;}
+            .subject-button {font-size: 14px; padding: 8px 15px;}
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="nav-logo">StudyHub</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="#" id="contactBtn">Contact</a>
+        </div>
+    </div>
+
+    <div class="hsc-hero">
+        <h1>HSC Preparation Hub 📚</h1>
+        <p>দ্বাদশ শ্রেণির শিক্ষার্থীদের জন্য সকল বিষয়ভিত্তিক নোট, সাজেশন ও কুইজ।</p>
+    </div>
+
+    <div class="filter-section">
+        <h2>বিষয় নির্বাচন করুন</h2>
+        <div id="filterButtons">
+            <button class="subject-button active" data-filter="all">সকল পোস্ট</button>
+            <button class="subject-button" data-filter="bangla">বাংলা</button>
+            <button class="subject-button" data-filter="english">ইংরেজি</button> <button class="subject-button" data-filter="physics">পদার্থবিজ্ঞান</button>
+            <button class="subject-button" data-filter="chemistry">রসায়ন</button>
+            <button class="subject-button" data-filter="math">গণিত</button>
+            <button class="subject-button" data-filter="biology">জীববিজ্ঞান</button>
+            <button class="subject-button" data-filter="ict">ICT</button>
+        </div>
+    </div>
+
+    <div class="posts-grid" id="postGrid">
+        
+        <a href="post_english_1.html" class="hsc-post-card post-item" data-category="english">
+            <div class="post-tag">English</div>
+            <h3 class="post-title">Grammar: Right Form of Verbs-এর সহজ নিয়ম</h3>
+            <div class="post-meta">তারিখ: ২৫ নভেম্বর, ২০২৫ | টপিক: Grammar</div>
+        </a>
+        
+        <a href="post_physics_1.html" class="hsc-post-card post-item" data-category="physics">
+            <div class="post-tag">Physics</div>
+            <h3 class="post-title">গতিবিদ্যা: গাণিতিক সমস্যার সহজ সমাধান (পার্ট ১)</h3>
+            <div class="post-meta">তারিখ: ১৫ নভেম্বর, ২০২৫ | টপিক: গতি</div>
+        </a>
+
+        <a href="post_chemistry_1.html" class="hsc-post-card post-item" data-category="chemistry">
+            <div class="post-tag">Chemistry</div>
+            <h3 class="post-title">প্রথম পত্রের গুরুত্বপূর্ণ বিক্রিয়াসমূহ ও কৌশল</h3>
+            <div class="post-meta">তারিখ: ১২ নভেম্বর, ২০২৫ | টপিক: রাসায়নিক পরিবর্তন</div>
+        </a>
+        
+        <a href="post_bangla_1.html" class="hsc-post-card post-item" data-category="bangla">
+            <div class="post-tag">Bangla</div>
+            <h3 class="post-title">সাহিত্য পাঠ: ‘ঐক্যতান’ কবিতার সম্পূর্ণ বিশ্লেষণ</h3>
+            <div class="post-meta">তারিখ: ১০ নভেম্বর, ২০২৫ | টপিক: গদ্য ও পদ্য</div>
+        </a>
+
+        <a href="post_ict_1.html" class="hsc-post-card post-item" data-category="ict">
+            <div class="post-tag">ICT</div>
+            <h3 class="post-title">তৃতীয় অধ্যায়: সংখ্যা পদ্ধতি রূপান্তরের সহজ কৌশল</h3>
+            <div class="post-meta">তারিখ: ৫ নভেম্বর, ২০২৫ | টপিক: সংখ্যা পদ্ধতি</div>
+        </a>
+
+        </div>
+
+    <footer>
+        © 2025 StudyHub BD — All Rights Reserved
+    </footer>
+
+    <script>
+        const postItems = document.querySelectorAll('.post-item');
+        const filterButtons = document.querySelectorAll('.subject-button');
+        
+        // Staggered Animation on Load
+        postItems.forEach((item, index) => {
+            item.style.animation = `slideInUp 0.6s ease-out forwards ${index * 0.1}s`;
+        });
+
+        // Filter Logic
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filterValue = button.getAttribute('data-filter');
+
+                // Update active class
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Filter posts
+                postItems.forEach(item => {
+                    const category = item.getAttribute('data-category');
+                    if (filterValue === 'all' || category === filterValue) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Placeholder Contact Logic (If you want to add contact modal here too)
+        const contactBtn = document.getElementById('contactBtn');
+        if(contactBtn) {
+            contactBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('Contact feature coming soon! (Link to contactModal will go here)');
+            });
+        }
+    </script>
+
+</body>
+</html>
