@@ -18,7 +18,7 @@
             line-height: 1.6;
         }
 
-        /* NAVBAR (Consistent with index.html) */
+        /* NAVBAR */
         .navbar {
             width: 100%;
             padding: 15px 30px;
@@ -50,9 +50,9 @@
             color: #d8fff6;
         }
 
-        /* HERO SECTION - পরিবর্তন করা হয়েছে */
+        /* HERO SECTION */
         .hsc-hero {
-            padding: 40px 20px; /* প্যাডিং কমানো হয়েছে */
+            padding: 40px 20px;
             text-align: center;
             background: linear-gradient(135deg, #00e6a4, #0ac0ff);
             color: white;
@@ -65,12 +65,37 @@
             to { opacity: 1; transform: translateY(0);} 
         }
         .hsc-hero h1 {
-            font-size: 34px; /* ফন্ট সাইজ কমানো হয়েছে */
+            font-size: 34px;
             font-weight: bold;
-            margin-bottom: 8px; /* মার্জিন কমানো হয়েছে */
+            margin-bottom: 8px;
         }
         .hsc-hero p {
-            font-size: 16px; /* ফন্ট সাইজ কমানো হয়েছে */
+            font-size: 16px;
+        }
+
+        /* SEARCH SECTION STYLES */
+        .search-section {
+            max-width: 800px;
+            margin: 20px auto 0;
+            padding: 0 20px;
+            text-align: center;
+        }
+        #postSearch {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #0aaf8f;
+            border-radius: 30px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        #postSearch::placeholder {
+            color: #777;
+        }
+        #postSearch:focus {
+            border-color: #0ac0ff;
+            box-shadow: 0 0 10px rgba(0, 175, 143, 0.2);
         }
 
         /* SUBJECT FILTER BUTTONS */
@@ -126,7 +151,8 @@
             color: #1a1a1a;
             display: flex;
             flex-direction: column;
-            opacity: 0; /* Hidden for JS animation */
+            /* Initial animation properties */
+            opacity: 0; 
             transform: translateY(20px);
         }
         .hsc-post-card:hover {
@@ -157,7 +183,7 @@
             padding-top: 10px;
         }
 
-        /* FOOTER (Consistent with index.html) */
+        /* FOOTER */
         footer {
             margin-top: 60px;
             background: #0aaf8f;
@@ -168,7 +194,7 @@
             border-radius: 30px 30px 0 0;
         }
 
-        /* ANIMATION */
+        /* ANIMATION KEYFRAMES (must be defined here) */
         @keyframes slideInUp {
             to {
                 opacity: 1;
@@ -176,21 +202,23 @@
             }
         }
 
-        /* MEDIA QUERIES for responsiveness (মোবাইলের জন্য Hero Section আরও ছোট করা হয়েছে) */
+        /* MEDIA QUERIES for responsiveness */
         @media (max-width: 600px) {
             .navbar {padding: 15px 15px;}
             .nav-logo {font-size: 24px;}
             .nav-links a {margin-left: 10px;}
             
-            /* Hero Section মোবাইলের জন্য অপটিমাইজেশন */
-            .hsc-hero {
-                padding: 30px 15px; /* প্যাডিং আরও কমানো */
+            .hsc-hero { padding: 30px 15px; }
+            .hsc-hero h1 { font-size: 26px; }
+            .hsc-hero p { font-size: 14px; }
+
+            .search-section {
+                margin: 10px auto 0;
+                padding: 0 15px;
             }
-            .hsc-hero h1 {
-                font-size: 26px; /* শিরোনামের ফন্ট সাইজ ছোট করা */
-            }
-            .hsc-hero p {
-                font-size: 14px; /* প্যারাগ্রাফের ফন্ট সাইজ ছোট করা */
+            #postSearch {
+                padding: 12px 15px;
+                font-size: 14px;
             }
             
             .posts-grid {padding: 10px; gap: 15px; grid-template-columns: 1fr;}
@@ -212,6 +240,10 @@
     <div class="hsc-hero">
         <h1>HSC Preparation Hub 📚</h1>
         <p>দ্বাদশ শ্রেণির শিক্ষার্থীদের জন্য সকল বিষয়ভিত্তিক নোট, সাজেশন ও কুইজ।</p>
+    </div>
+
+    <div class="search-section">
+        <input type="text" id="postSearch" placeholder="পোস্ট, নোট বা টপিক সার্চ করুন..." aria-label="Search posts">
     </div>
 
     <div class="filter-section">
@@ -259,7 +291,7 @@
             <div class="post-meta">তারিখ: ৫ নভেম্বর, ২০২৫ | টপিক: সংখ্যা পদ্ধতি</div>
         </a>
 
-        </div>
+    </div>
 
     <footer>
         © 2025 StudyHub BD — All Rights Reserved
@@ -268,34 +300,64 @@
     <script>
         const postItems = document.querySelectorAll('.post-item');
         const filterButtons = document.querySelectorAll('.subject-button');
-        
-        // Staggered Animation on Load
-        postItems.forEach((item, index) => {
-            item.style.animation = `slideInUp 0.6s ease-out forwards ${index * 0.1}s`;
-        });
+        const searchInput = document.getElementById('postSearch');
 
-        // Filter Logic
+        // নতুন ফাংশন: সার্চ এবং ফিল্টার দুটোই এক সাথে প্রয়োগ করবে
+        function applyFilters() {
+            // ১. সক্রিয় সাবজেক্ট ফিল্টার বের করা
+            const activeFilter = document.querySelector('.subject-button.active').getAttribute('data-filter');
+            // ২. সার্চ টেক্সট বের করা
+            const searchTerm = searchInput.value.toLowerCase().trim();
+
+            let delay = 0; // Staggered Effect এর জন্য ডিলে যুক্ত করা হলো
+
+            postItems.forEach(item => {
+                const category = item.getAttribute('data-category');
+                const title = item.querySelector('.post-title').textContent.toLowerCase();
+
+                // সাবজেক্ট ফিল্টার মিলছে কিনা
+                const isCategoryMatch = activeFilter === 'all' || category === activeFilter;
+
+                // টাইটেলে সার্চ টেক্সট আছে কিনা
+                const isSearchMatch = title.includes(searchTerm);
+
+                // যদি দুটো শর্তই পূরণ হয়, তবে পোস্ট দেখাও
+                if (isCategoryMatch && isSearchMatch) {
+                    item.style.display = 'flex';
+                    // অ্যানিমেশন পুনরায় প্রয়োগ করা হলো
+                    item.style.animation = `slideInUp 0.6s ease-out forwards ${delay}s`; 
+                    delay += 0.1; // Staggered Delay
+                } else {
+                    item.style.display = 'none';
+                    // যখন পোস্টটি লুকানো হয়, তখন এর অ্যানিমেশন স্টাইল reset করা হলো
+                    item.style.animation = 'none'; 
+                    item.style.opacity = '0'; 
+                    item.style.transform = 'translateY(20px)';
+                }
+            });
+        }
+        
+        // Filter Logic Event Listener
         filterButtons.forEach(button => {
             button.addEventListener('click', () => {
-                const filterValue = button.getAttribute('data-filter');
-
                 // Update active class
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
 
-                // Filter posts
-                postItems.forEach(item => {
-                    const category = item.getAttribute('data-category');
-                    if (filterValue === 'all' || category === filterValue) {
-                        item.style.display = 'flex';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
+                // নতুন ফাংশন কল করা হলো
+                applyFilters();
             });
         });
 
-        // Placeholder Contact Logic (If you want to add contact modal here too)
+        // Search Input Event Listener
+        searchInput.addEventListener('input', applyFilters);
+
+        // পেজ লোড হওয়ার সময় একবার ফিল্টার প্রয়োগ করা
+        // এটিই পোস্টগুলিকে অ্যানিমেশনের মাধ্যমে দৃশ্যমান করে তুলবে
+        applyFilters(); 
+
+
+        // Placeholder Contact Logic
         const contactBtn = document.getElementById('contactBtn');
         if(contactBtn) {
             contactBtn.addEventListener('click', (e) => {
