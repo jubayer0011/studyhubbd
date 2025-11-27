@@ -50,9 +50,9 @@
             color: #d8fff6;
         }
 
-        /* HERO SECTION */
+        /* HERO SECTION - পরিবর্তন করা হয়েছে */
         .hsc-hero {
-            padding: 60px 20px;
+            padding: 40px 20px; /* প্যাডিং কমানো হয়েছে */
             text-align: center;
             background: linear-gradient(135deg, #00e6a4, #0ac0ff);
             color: white;
@@ -65,12 +65,12 @@
             to { opacity: 1; transform: translateY(0);} 
         }
         .hsc-hero h1 {
-            font-size: 38px;
+            font-size: 34px; /* ফন্ট সাইজ কমানো হয়েছে */
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 8px; /* মার্জিন কমানো হয়েছে */
         }
         .hsc-hero p {
-            font-size: 18px;
+            font-size: 16px; /* ফন্ট সাইজ কমানো হয়েছে */
         }
 
         /* SUBJECT FILTER BUTTONS */
@@ -176,12 +176,23 @@
             }
         }
 
-        /* MEDIA QUERIES for responsiveness */
+        /* MEDIA QUERIES for responsiveness (মোবাইলের জন্য Hero Section আরও ছোট করা হয়েছে) */
         @media (max-width: 600px) {
             .navbar {padding: 15px 15px;}
             .nav-logo {font-size: 24px;}
             .nav-links a {margin-left: 10px;}
-            .hsc-hero h1 {font-size: 30px;}
+            
+            /* Hero Section মোবাইলের জন্য অপটিমাইজেশন */
+            .hsc-hero {
+                padding: 30px 15px; /* প্যাডিং আরও কমানো */
+            }
+            .hsc-hero h1 {
+                font-size: 26px; /* শিরোনামের ফন্ট সাইজ ছোট করা */
+            }
+            .hsc-hero p {
+                font-size: 14px; /* প্যারাগ্রাফের ফন্ট সাইজ ছোট করা */
+            }
+            
             .posts-grid {padding: 10px; gap: 15px; grid-template-columns: 1fr;}
             .subject-button {font-size: 14px; padding: 8px 15px;}
         }
