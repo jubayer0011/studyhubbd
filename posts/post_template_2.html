@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পোস্টের শিরোনাম V2 | StudyHub BD</title>
+    <style>
+        /* ফন্ট ও বেস স্টাইল */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Open Sans', sans-serif; /* ফন্ট স্টাইল পরিবর্তন করা হয়েছে */
+            background: #ecf0f1; /* হালকা ধূসর ব্যাকগ্রাউন্ড */
+            color: #2c3e50; /* গাঢ় টেক্সট কালার */
+            line-height: 1.6;
+        }
+        :root {
+            --primary-color: #1abc9c; /* Sunset Teal */
+            --accent-color: #3498db; /* Blue Accent */
+        }
+
+        /* নেভিগেশন বার */
+        .navbar {
+            width: 100%;
+            padding: 18px 30px; /* প্যাডিং সামান্য বাড়ানো হয়েছে */
+            background: var(--primary-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        .nav-logo {
+            font-size: 30px;
+            color: white;
+            font-weight: 800; /* ফন্ট ওয়েট বাড়ানো হয়েছে */
+        }
+        .nav-links a {
+            margin-left: 20px;
+            font-size: 16px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #d0f0ff;
+        }
+
+        /* পোস্ট কন্টেইনার */
+        .post-container {
+            max-width: 900px; /* প্রস্থ সামান্য বাড়ানো হয়েছে */
+            margin: 40px auto;
+            padding: 40px; /* প্যাডিং বাড়ানো হয়েছে */
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            opacity: 0; 
+            transform: translateY(30px); /* অ্যানিমেশনের দূরত্ব বাড়ানো হয়েছে */
+            animation: fadeInPost 1.2s ease-out forwards;
+        }
+
+        /* পোস্ট শিরোনাম */
+        .post-header h1 {
+            font-size: 34px;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            border-bottom: 2px solid var(--accent-color); /* অ্যাকসেন্ট কালারের বর্ডার */
+            padding-bottom: 15px;
+            font-weight: 700;
+        }
+        .post-header p {
+            font-size: 15px;
+            color: #95a5a6; /* হালকা ধূসর মেটা টেক্সট */
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        /* ট্যাগ এবং ক্যাটাগরি */
+        .post-tags span {
+            display: inline-block;
+            background: var(--accent-color); 
+            color: white;
+            padding: 6px 14px;
+            border-radius: 4px; /* কোণগুলি কম গোলাকার */
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 12px;
+            margin-bottom: 25px;
+            transition: transform 0.2s;
+        }
+        .post-tags span:hover {
+            transform: translateY(-1px);
+        }
+
+        /* মূল কনটেন্ট এরিয়া */
+        .post-content p {
+            margin-bottom: 25px;
+            font-size: 18px; /* ফন্ট সাইজ সামান্য বাড়ানো হয়েছে */
+            text-align: left;
+        }
+        .post-content h2 {
+            font-size: 26px;
+            color: var(--primary-color);
+            margin-top: 35px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 10px;
+        }
+        .post-content ul, .post-content ol {
+            margin-left: 30px;
+            margin-bottom: 25px;
+        }
+
+        /* PDF ডাউনলোড সেকশন */
+        .pdf-download-section {
+            text-align: center;
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 15px;
+            background: #f1f8fc; /* হালকা নীল ব্যাকগ্রাউন্ড */
+            box-shadow: inset 0 0 15px rgba(52, 152, 219, 0.1);
+        }
+        .pdf-download-btn {
+            background: var(--accent-color); 
+            color: white;
+            padding: 15px 35px; /* বাটন সাইজ বাড়ানো হয়েছে */
+            border: none;
+            border-radius: 5px;
+            font-size: 19px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 6px 12px rgba(52, 152, 219, 0.3);
+        }
+        .pdf-download-btn:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        /* অ্যানিমেশন */
+        @keyframes fadeInPost {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ফুটার */
+        footer {
+            margin-top: 60px;
+            background: var(--primary-color);
+            text-align: center;
+            padding: 30px;
+            color: white;
+            font-size: 16px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        /* রেসপনসিভনেস */
+        @media (max-width: 950px) {
+            .post-container {
+                margin: 20px 15px;
+                padding: 25px;
+            }
+            .post-header h1 {
+                font-size: 28px;
+            }
+            .post-content p {
+                font-size: 16px;
+            }
+            .pdf-download-btn {
+                font-size: 17px;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="nav-logo">StudyHub</div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a> 
+            <a href="../../hsc.html">HSC Corner</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+
+    <div class="post-container">
+        
+        <div class="post-header">
+            <h1>⚡ তাপগতিবিদ্যা: দ্রুত রিভিশন নোট ও গুরুত্বপূর্ণ সূত্রাবলী</h1>
+            <p>তারিখ: ২৯ নভেম্বর, ২০২৫ | লেখক: ফিজিক্স ফ্যানাটিক | বিষয়: পদার্থবিজ্ঞান ২য় পত্র</p>
+        </div>
+
+        <div class="post-tags">
+            <span>#Physics_HSC</span>
+            <span>#Revision_Note</span>
+            <span>#Thermodynamics</span>
+        </div>
+
+        <div class="post-content">
+            <p>তাপগতিবিদ্যা (Thermodynamics) HSC পরীক্ষার জন্য একটি কঠিন কিন্তু অত্যন্ত স্কোরিং অধ্যায়। এই নোটে আমরা তাপগতিবিদ্যার প্রথম ও দ্বিতীয় সূত্র, কার্নো চক্র এবং ইঞ্জিনের দক্ষতার গাণিতিক সমস্যা সমাধানের জন্য প্রয়োজনীয় সকল তথ্য ও সূত্র সংক্ষেপে তুলে ধরেছি। এই টেমপ্লেটটি আপনি আপনার সকল রিভিশন নোটের জন্য ব্যবহার করতে পারেন।</p>
+            
+            <h2>গুরুত্বপূর্ণ সূত্রাবলী</h2>
+            <p>পরীক্ষার আগের রাতে শুধু সূত্রগুলো দেখে যেতে চাইলে, নিচের তালিকাটি খুবই কাজে দেবে:</p>
+            <ol>
+                <li>তাপগতিবিদ্যার প্রথম সূত্র: $\Delta U = \Delta Q - \Delta W$</li>
+                <li>কার্নো ইঞ্জিনের দক্ষতা: $\eta = 1 - \frac{T_2}{T_1}$</li>
+                <li>এন্ট্রপির পরিবর্তন: $\Delta S = \frac{\Delta Q}{T}$</li>
+            </ol>
+            
+            <p>সূত্রগুলোর বিশদ ব্যাখ্যা এবং প্রয়োগের জন্য PDF ফাইলটি ডাউনলোড করুন। বিশেষ করে, সমতাপীয় (Isothermal) ও রুদ্ধতাপীয় (Adiabatic) প্রক্রিয়ার পার্থক্য অবশ্যই দেখে যাবেন।</p>
+
+            <h2>অধ্যায়টির বিশেষ টিপস</h2>
+            <p>এই অধ্যায়ে ভালো করার জন্য গ্রাফিক্যাল বিশ্লেষণগুলো (P-V ডায়াগ্রাম) খুব মনোযোগ দিয়ে দেখতে হবে। প্রতিটি প্রক্রিয়ার জন্য অভ্যন্তরীণ শক্তি, কৃতকাজ এবং তাপমাত্রার পরিবর্তন কীভাবে হয়, তা পরিষ্কার ধারণা রাখুন।</p>
+
+        </div>
+
+        <div class="pdf-download-section">
+            <p style="color: var(--accent-color); font-weight: 700; margin-bottom: 18px;">সম্পূর্ণ হ্যান্ডনোট এবং গাণিতিক সমাধান PDF-এ উপলব্ধ</p>
+            <a href="path/to/your/hsc_physics_thermo_note.pdf" class="pdf-download-btn" download>
+                ⬇️ তাপগতিবিদ্যা নোট ডাউনলোড করুন
+            </a>
+        </div>
+        
+    </div>
+
+    <footer>
+        © 2025 StudyHub BD — All Rights Reserved
+    </footer>
+
+    <script>
+        // জাভাস্ক্রিপ্ট: পোস্ট কন্টেইনারে অ্যানিমেশন সেট করতে
+        const postContainer = document.querySelector('.post-container');
+        postContainer.style.animationDelay = '0.1s';
+    </script>
+
+</body>
+</html>
